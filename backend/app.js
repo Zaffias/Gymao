@@ -3,16 +3,20 @@ const express = require('express'),
       cors = require('cors'),
       morgan = require('morgan'),
       mongoose = require('mongoose'),
-      dotenv = require('dotenv');
+      dotenv = require('dotenv'),
+      errorHandler = require('./utils/errorHandler');
 // Global app object
 const app = express();
 dotenv.config();
 
+// Environment variables
 const PORT = process.env.NODE_PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(MONGODB_URI);
+app.set('secretKey', process.env.SECRET_KEY);
 
+// MongoDB connection
+mongoose.connect(MONGODB_URI);
 
 // Logging
 app.use(morgan('dev'));
@@ -25,5 +29,8 @@ app.use(cors());
 
 // Routes
 app.use('/', require('./routes'));
+
+// Error handling middleware
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

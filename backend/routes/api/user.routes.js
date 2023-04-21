@@ -1,25 +1,30 @@
 const router = require('express').Router();
 const User = require('../../models/User.js');
+const userServices = require('../../services/users/users.services.js');
+const authServices = require('../../services/auth/auth.services.js');
+// Creates a new user
 
-// Post new user
 router.post('/', async (req, res, next) => {
-    try {
+    userServices.createUser(req, res, next);
+});
 
-        // Checks that the request body is not empty
-        if(!req.body) return res.status(400).json(req.body);
-        
-        const body = req.body;
-        const newUser = new User(body);
-        newUser.save();
-    } catch (error) {
-     next(error);
-    }
-})
+// Gets all users
+router.get('/', authServices.verifyToken, async (req, res, next) => {
+    userServices.getUsers(req, res, next);
+});
 
-
-router.get('/', (req, res) => {
-
-})
+// Gets a user
+router.get('/:id', authServices.verifyToken, async (req, res, next) => {
+    userServices.getUserById(req, res, next);
+});
+// Deletes a user
+router.delete('/:id', authServices.verifyToken, async (req, res, next) => {
+    userServices.deleteUser(req, res, next);
+});
+// Updates a user
+router.put('/:id', authServices.verifyToken, async (req, res, next) => {
+    userServices.updateUser(req, res, next);
+});
 
 module.exports = router;
 

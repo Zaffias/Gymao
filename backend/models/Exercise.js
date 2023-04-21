@@ -5,31 +5,24 @@ const exerciseSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  muscleGroup: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: false
-  },
-  sets: {
-    type: Number,
-    required: true
-  },
-  reps: {
-    type: Number,
-    required: true
-  },
-  weight: {
-    type: Number,
-    required: true
-  },
+  muscleGroup: {type: String},
+  description: {type: String},
+  sets: {type: Number},
+  reps: {type: Number},
+  weight: {type: Number},
+  duration: {type: Number},
+  date: {type: Date},
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User'
   }
+});
+
+exerciseSchema.pre('save', function(next){
+  if(!this.date)
+    this.date = new Date().getTime();
+  next();
 });
 
 const Exercise = mongoose.model('Exercise', exerciseSchema);
