@@ -33,7 +33,6 @@ router.get('/:id', authServices.verifyToken, async (req, res, next) => {
         const user = await userServices.getUserById(id);
         res.status(200).send(user);
     } catch (error) {
-        error.code = 404;
         next(error);
     }
 });
@@ -45,7 +44,7 @@ router.delete('/:id', authServices.verifyToken, async (req, res, next) => {
         await userServices.deleteUser(id);
         res.status(200).send({message: "User deleted"});
     } catch (error) {
-        next(error)
+        next(error);
     }
     
 });
