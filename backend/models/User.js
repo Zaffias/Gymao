@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     required: true,
     unique: true,
-    match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, 'This email adress is not valid']
+    match: [/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, 'The email address is not valid']
   },
   password: {
     type: String,
@@ -34,6 +34,8 @@ userSchema.pre('save', async function(next) {
     }
 })
 
+// Compares the hash with the user password, returns true if they match, false if they don't match or an exception occurs
+
 userSchema.methods.comparePassword = async function(password) {
     try{
         return await argon2.verify(this.password, password);
@@ -42,8 +44,8 @@ userSchema.methods.comparePassword = async function(password) {
     }
 }
 // Raises an error if a field is not unique
-userSchema.plugin(require('mongoose-unique-validation'), {message: 'This field is already taken.'});
 
+userSchema.plugin(require('mongoose-unique-validation'), {message: 'This field is already taken.'});
 
 const User = mongoose.model('User', userSchema);
 

@@ -19,6 +19,8 @@ const exerciseSchema = new mongoose.Schema({
   }
 });
 
+// If no date is sent it takes today.
+
 exerciseSchema.pre('save', function(next){
   if(!this.date)
     this.date = new Date().getTime();

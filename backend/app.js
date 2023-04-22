@@ -5,14 +5,15 @@ const express = require('express'),
       mongoose = require('mongoose'),
       dotenv = require('dotenv'),
       errorHandler = require('./utils/errorHandler');
+
 // Global app object
 const app = express();
+
 dotenv.config();
 
 // Environment variables
 const PORT = process.env.NODE_PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
-
 app.set('secretKey', process.env.SECRET_KEY);
 
 // MongoDB connection
