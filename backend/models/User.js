@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const argon2 = require('argon2');
 
 const userSchema = new mongoose.Schema({
+  // I should add body metrics such as height, weigth, age, etc.
   userName:{
     type: String,
     required: true,

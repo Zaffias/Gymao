@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const exerciseSchema = new mongoose.Schema({
+  // I should add things like BPM, sensations, etc
   name: {
     type: String,
     required: true
