@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const argon2 = require('argon2');
 
 const userSchema = new mongoose.Schema({
+  userName:{
+    type: String,
+    required: true,
+    unique: true,
+    minLegth: 4
+  },
   email: {
     type: String,
     lowercase: true,
@@ -11,12 +17,14 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    // The password validation is made on the service
   },
   exercises: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Exercise'
   }]
+  // TODO: Make a UserToken schema, and add a field in user linking to the Token so the user can keep logged in.
 }, {timestamps: true});
 
 // Hashing password before saving

@@ -31,6 +31,12 @@ app.use(cors());
 // Routes
 app.use('/', require('./routes'));
 
+// Sends a 404 if the route is not defined
+app.get('*', function(req, res){
+    res.status(404).send({message: "Resource not found"});
+  });
+
+
 // Error handling middleware
 app.use(errorHandler);
 
