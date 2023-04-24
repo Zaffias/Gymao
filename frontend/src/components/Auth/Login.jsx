@@ -3,6 +3,8 @@ import { Link, Navigate } from 'react-router-dom';
 import { axiosInstance } from '../../../config/axiosConfig';
 import { useContext } from 'react';
 import { AppContext } from '../../context';
+import { Wrapper } from '../Wrapper';
+import '../styles/Login.css';
 
 export const Login = () => {
     const context = useContext(AppContext);
@@ -32,21 +34,39 @@ export const Login = () => {
     };
 
     return(
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input 
-                type="email"
-                placeholder="email"
-                {...register("email")}
-                required
-            />
-            <input 
-                type="password" 
-                placeholder="password"
-                {...register("password")}
-                required
-            />
-            <button type="submit">Login</button>
-            <Link to={'/register'}>Don't have an account? Register</Link>
-        </form>
+        <Wrapper>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className='login-wrapper'>
+                    <h1>Login to Your Account</h1>
+                    <div className='text-input-wrapper'>
+                        <label htmlFor="email" className='text-input-label'>
+                            Email
+                        </label>
+                        <input 
+                            type="email"
+                            {...register("email")}
+                            required
+                            name='email'
+                            className='form-text-input'
+                            autoComplete='off'
+                        />
+                    </div>
+                    <div className='text-input-wrapper'>
+                        <label htmlFor="password" className='text-input-label'>
+                            Password
+                        </label>
+                        <input 
+                            type="password"
+                            {...register("password")}
+                            required
+                            name='password'
+                            className='form-text-input'
+                        />
+                    </div>
+                        <button type='submit' className='login-button'>Login</button>
+                        <Link to={'/register'}>Don't have an account? Register</Link>
+                </div>
+            </form>
+        </Wrapper>
     )
 }

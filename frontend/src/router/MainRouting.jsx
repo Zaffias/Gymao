@@ -6,8 +6,8 @@ export const MainRouting = () => {
     return (
     <Router>
         <Routes>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/register" element={<Register/>}/>
           {/*The protected routes (components inside the route below this comment) are components that will only render if the user is logged in.*/}
           <Route path="home" element={<ProtectedRoute/>}>
             <Route index element={<Home/>}/>
