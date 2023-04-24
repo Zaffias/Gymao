@@ -12,9 +12,13 @@ function App() {
     if(!user && localStorage.getItem('token')){
       (async () => {
         // Move to its own function
-        const user = await axiosInstance.get('/user/me');
-        setUser(user.data);
-        setAuthenticated(true);
+        try {
+          const user = await axiosInstance.get('/user/me');
+          setUser(user.data);
+          setAuthenticated(true);
+        } catch (error) {
+          console.log(error);
+        }
       })()
     }
   })

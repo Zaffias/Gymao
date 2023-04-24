@@ -1,14 +1,19 @@
-h1{
+.login-title{
     color: var(--dark-grey);
+    margin: 0 0 1.5rem 0
 }
 a{
     color: var(--dark-orange);
     font-weight: bold;
 }
+
+form{
+    width: 100%;
+    flex: 1 0 30%;
+}
 .login-wrapper{
     display: flex;
     flex-direction: column;
-    flex: 2 0 60%;
     background-color: var(--white-color);
     height: 100vh;
     padding: 3em;
@@ -19,12 +24,13 @@ a{
     width: 90%;
     padding: 0.5rem;
     font-size: 1rem;
-    border: 1px solid var(--dark-grey)
+    border: none;
+    border-bottom: 1px solid var(--dark-grey)
 }
 
 .form-text-input:focus{
     outline: none !important;
-    border: var(--dark-orange) solid 1px;
+    border-bottom: var(--dark-orange) solid 1px;
 }
 
 .text-input-wrapper{
@@ -32,7 +38,7 @@ a{
     flex-direction: column;
     align-items: center;
     width: 100%;
-    margin: 2rem;
+    margin: 1rem 0 0 0;
 }
 
 .text-input-label{
@@ -41,9 +47,9 @@ a{
 }
 
 .login-button{
-    width: 90%;
-    padding: 0.5rem;
-    margin: 1.2rem 0;
+    width: 65%;
+    padding: 0.8rem;
+    margin: 3rem 0 2rem 0;
     border: none;
     color: var(--white-color);
     background-color: var(--dark-orange);
@@ -54,4 +60,16 @@ a{
 .login-button:hover{
     cursor: pointer;
     filter: contrast(150%);
+}
+
+.login-background-image{
+    width: 100%;
+    background-image: url(https://cdn.discordapp.com/attachments/402570201494716416/1100045798886101062/1200px-Cat_Mario_Artwork_-_Super_Mario_3D_World.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: opacity(500%);
+}
+
+.login-logo{
+    height: 12rem;
 }

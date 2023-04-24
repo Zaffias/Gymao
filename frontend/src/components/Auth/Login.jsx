@@ -5,6 +5,8 @@ import { useContext } from 'react';
 import { AppContext } from '../../context';
 import { Wrapper } from '../Wrapper';
 import '../styles/Login.css';
+import { Logo } from '../utils/Logo';
+import { AuthFormTextInput } from './loginComponents/AuthFormTextInput';
 
 export const Login = () => {
     const context = useContext(AppContext);
@@ -37,36 +39,31 @@ export const Login = () => {
         <Wrapper>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='login-wrapper'>
-                    <h1>Login to Your Account</h1>
-                    <div className='text-input-wrapper'>
-                        <label htmlFor="email" className='text-input-label'>
-                            Email
-                        </label>
-                        <input 
-                            type="email"
-                            {...register("email")}
-                            required
-                            name='email'
-                            className='form-text-input'
-                            autoComplete='off'
-                        />
-                    </div>
-                    <div className='text-input-wrapper'>
-                        <label htmlFor="password" className='text-input-label'>
-                            Password
-                        </label>
-                        <input 
-                            type="password"
-                            {...register("password")}
-                            required
-                            name='password'
-                            className='form-text-input'
-                        />
-                    </div>
-                        <button type='submit' className='login-button'>Login</button>
-                        <Link to={'/register'}>Don't have an account? Register</Link>
+                    <Logo className='login-logo'/>
+                    <h2 className='login-title'>Login to Your Account</h2>
+                    <AuthFormTextInput
+                        htmlFor="email"
+                        label="Email"
+                        type="email"
+                        autoComplete='off'
+                        register={register}
+                        name={'email'}
+                        required={true}
+                    />
+                    <AuthFormTextInput
+                        htmlFor="password"
+                        label="Password"
+                        type="password"
+                        register={register}
+                        name={'password'}
+                        required={true}
+                    />
+                    <button type='submit' className='login-button'>Login</button>
+                    <Link to={'/register'}>Don't have an account? Register</Link>
                 </div>
             </form>
+            <div className='login-background-image'>
+            </div>
         </Wrapper>
     )
 }
